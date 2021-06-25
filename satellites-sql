@@ -1,0 +1,24 @@
+--SAT 1, HUB 1
+CREATE TABLE sat_customer_info
+(
+        `customerNo` SERIAL PRIMARY KEY,
+        `customerNoId` varchar(30) REFERENCES hub_customer (customerNo),
+        `salutation` TEXT,
+        `birthdate` varchar(30),
+        email varchar(30),
+        street varchar(30),
+        postcode varchar(30),
+        city varchar(30),
+        newsletter varchar(30),
+        recordSource varchar(30)
+);
+
+--SAT 2, HUB 1
+CREATE TABLE sat_customer_credit
+(
+        `customerNoId` SERIAL PRIMARY KEY REFERENCES hub_customer (customerNo),
+        `riskId` TEXT,
+        `credit` varchar(30),
+        creditLimit varchar(30),
+        recordSource varchar(30)
+);
