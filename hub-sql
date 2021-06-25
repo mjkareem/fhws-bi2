@@ -1,0 +1,48 @@
+--HUB 1
+CREATE TABLE hub_customer
+(
+        `customerNo` SERIAL PRIMARY KEY,
+        `firstname` varchar(30),
+        `surname` varchar(30),
+        `recordSource` varchar(30),
+        UNIQUE (`firstname`, `surname`)
+) charset='utf8';
+
+--HUB 2
+CREATE TABLE hub_orders
+(
+        `customerNo` SERIAL PRIMARY KEY,
+        `orderNo` varchar(30),
+        `orderDate` varchar(30),
+        `recordSource` varchar(30),
+        UNIQUE (`orderNo`, `orderDate`)
+) charset='utf8';
+
+--HUB 3
+CREATE TABLE hub_order_items
+(
+        `orderNo` SERIAL PRIMARY KEY,
+        `customerNo` varchar(30),
+        `IWAN` varchar(30),
+        `recordSource` varchar(30),
+        UNIQUE (`customerNo`, `IWAN`)
+) charset='utf8';
+
+--HUB 4
+CREATE TABLE hub_articles
+(
+         `IWAN` varchar(30) PRIMARY KEY,
+         `productGroup` varchar(30),
+         `unitPriceGross` varchar(30),
+         `recordSource` varchar(30),
+	UNIQUE (`productGroup`,`unitPriceGross`)
+) charset='utf8';
+
+--HUB 5
+CREATE TABLE hub_returns
+(
+        `returnNo` SERIAL PRIMARY KEY,
+        `orderNo` varchar(30),
+        `recordSource` varchar(30),
+	UNIQUE (`orderNo`)
+) charset='utf8';
