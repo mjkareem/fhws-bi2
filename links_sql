@@ -1,0 +1,31 @@
+--LINK 1
+CREATE TABLE link_customer_orders
+(
+        `customerNo` SERIAL PRIMARY KEY,
+        `firstName` varchar(30),
+        `orderDate` varchar(30),
+        FOREIGN KEY (`customerNo`) REFERENCES hub_orders (`orderNo`),
+        FOREIGN KEY (`customerNo`) REFERENCES hub_customer (`customerNo`),
+        `recordSource` varchar(30)
+        );
+
+--LINK 2
+CREATE TABLE link_order_item_description
+(
+        `orderNo` SERIAL PRIMARY KEY,
+        `customerNo` varchar(30),
+        `IWAN` varchar(30),
+        `recordSource` varchar(30),
+        FOREIGN KEY (`orderNo`) REFERENCES hub_orders (`orderNo`),
+        FOREIGN KEY (`customerNo`) REFERENCES hub_order_items (`customerNo`),
+        FOREIGN KEY (`IWAN`) REFERENCES hub_articles (`IWAN`)
+        );
+
+--LINK 3
+CREATE TABLE link_order_returns
+(
+        `returnNo` SERIAL PRIMARY KEY,
+        `orderNo` varchar(30),
+        `recordSource` varchar(30),
+        FOREIGN KEY (`returnNo`) REFERENCES hub_returns (`returnNo`)
+        );
